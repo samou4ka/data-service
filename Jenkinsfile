@@ -10,7 +10,7 @@ pipeline {
         stage("Build image") {
              steps {
                  script {
-                      myapp = docker.build("samou4ka/data-service:${env.BUILD_ID}")
+                      myapp = docker.build("samou4ka/data-service")
                  }
              }
         }
