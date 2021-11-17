@@ -7,15 +7,10 @@ pipeline {
             }
         }
 
-        stage("Initialize Docker"){
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-        }
-
         stage("Build image") {
              steps {
                  script {
-                      myapp = docker.build("samou4ka/data-service:0.0.1")
+                      myapp = docker.build("samou4ka/data-service:${env.BUILD_ID}")
                  }
              }
         }
