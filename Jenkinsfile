@@ -10,7 +10,7 @@ pipeline {
         stage("Build image") {
              steps {
                  script {
-                      echo "success build"
+                      myapp = docker.build("samou4ka/data-service:${env.BUILD_ID}")
                  }
              }
         }
@@ -18,7 +18,8 @@ pipeline {
         stage("Push image") {
              steps {
                   script {
-                           echo "success push"
+                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                            myapp.push("latest")
                        }
                   }
              }
