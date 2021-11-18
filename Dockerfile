@@ -1,3 +1,4 @@
 FROM adoptopenjdk/openjdk11:alpine-jre
-COPY ./build/libs/*.jar app.jar
-CMD ["java", "-jar", "/app.jar"]
+WORKDIR /home/app
+COPY --from=build /app/build/layers/*.jar /home/app/app.jar
+ENTRYPOINT ["java", "-jar", "/home/app/app.jar"]
