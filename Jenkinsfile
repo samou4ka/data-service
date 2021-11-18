@@ -7,12 +7,6 @@ pipeline {
             }
         }
 
-        stage('Cloning Git') {
-              steps {
-                git 'https://github.com/samou4ka/data-service.git'
-              }
-        }
-
         stage('Build') {
                       steps {
                         bat './gradlew clean build'
