@@ -13,7 +13,7 @@ pipeline {
                       }
                 }
 
-        stage("Build image") {
+        stage("Build docker image") {
              steps {
                  script {
                       myapp = docker.build("samou4ka/data-service:${env.BUILD_ID}")
@@ -21,7 +21,7 @@ pipeline {
              }
         }
 
-        stage("Push image") {
+        stage("Push docker image") {
              steps {
                   script {
                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
@@ -29,6 +29,14 @@ pipeline {
                        }
                   }
              }
+        }
+
+        stage("Remove local docker image") {
+            steps {
+                script {
+                    sh "docker rmi -f ${myapp}""
+                }
+            }
         }
     }
 }
