@@ -30,13 +30,5 @@ pipeline {
                   }
              }
         }
-
-        stage("Remove local docker image") {
-            steps {
-                script {
-                    sh "docker rmi -f ${myapp}"
-                }
-            }
-        }
     }
 }
